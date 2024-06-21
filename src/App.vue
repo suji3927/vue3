@@ -2,9 +2,7 @@
   <h1>영화 정보</h1>
     <div v-for="(item, index) in data" :key="index">
       <figure>
-        <!-- <img src="./assets/poster1.jpg" alt="노량"> -->
-        <img :src="`${item.imgUrl}`" :alt="item.title">
-        <img :src="item.imgUrl" :alt="item.title">
+        <img :src="`./assets/${item.imgUrl}`" :alt="item.title">
       </figure>
       <div class="info">
         <h3 :style="item.textRed">{{ item.title }}</h3>
@@ -32,14 +30,14 @@
             category: "액션, 드라마",
             textRed: "color: red",
             like: 0,
-            imgUrl: './assets/poster1.jpg', // path는 index.html 기준
+            imgUrl: 'poster1.jpg', // path는 index.html 기준
           },
           {
             title: "아쿠아맨",
             year: 2023,
             category: "판타지",
             like: 0,
-            imgUrl: './assets/poster2.jpg',
+            imgUrl: 'poster2.jpg',
           },
         ]
       }
