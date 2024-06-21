@@ -1,4 +1,5 @@
 <template>
+  <NavbarC />
   <h1>영화 정보</h1>
     <div v-for="(item, index) in movies" :key="index">
       <figure>
@@ -27,6 +28,13 @@
 <script>
   // import { food, city } from './assets/movies'
   import movies from './assets/movies' // export default 사용 시 중괄호 없이 사용
+  
+
+  // export name과 상관없이 import 선언된 이름 그대로 사용됨
+  // export name은
+  // - 컴포넌트를 재귀적으로 구성할 때
+  // - Vue 개발자 도구를 사용할 때
+  import NavbarC from './components/Navbar.vue'
 
   export default {
     name: 'App',
@@ -42,6 +50,9 @@
       increseLike(index) {
         this.data[index].like++
       }
+    },
+    components: {
+      NavbarC: NavbarC,
     }
   }
 </script>
