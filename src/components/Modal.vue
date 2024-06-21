@@ -3,7 +3,13 @@
       <div class="inner">
         <h3>{{ movies[selectedMovie].title}}</h3>
         <p>영화 상세정보</p>
-        <button @:click="isModal=false">닫기</button>
+
+        <!-- error  Unexpected mutation of "isModal" prop 
+             부모가 전달해준 데이터는 자식이 직접 변경할 수 없다.
+             단, evnet로 부모에게 요청할 수 있다.
+        -->
+        <!-- <button @:click="isModal=false">닫기</button> -->
+        <button @:click="$emit('closeModal')">닫기</button>
       </div>
     </div>
 </template>
@@ -11,6 +17,11 @@
 <script>
 export default {
     name: 'ModalComponent',
+    props: {
+      isModal: Boolean,
+      movies: Array,
+      selectedMovie: Number,
+    }
     
 }
 </script>

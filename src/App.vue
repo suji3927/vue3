@@ -18,7 +18,13 @@
       </div>
     </div>
 
-    <Modal />
+    <!-- 부모가 자식이 요청한 event를 전달 받아 값을 직접 바꿔준다. -->
+    <Modal 
+      :isModal="isModal" 
+      :movies="movies" 
+      :selectedMovie="selectedMovie"
+      @closeModal="isModal=false"
+    />
 </template>
 
 <script>
