@@ -25,9 +25,8 @@
 </template>
 
 <script>
-  import { food, city } from './assets/movies'
-  console.log(food);
-  console.log(city);
+  // import { food, city } from './assets/movies'
+  import movies from './assets/movies' // export default 사용 시 중괄호 없이 사용
 
   export default {
     name: 'App',
@@ -35,23 +34,7 @@
       return {
         isModal: false,
         like: 0,
-        movies: [
-          {
-            title: "노량",
-            year: 2023,
-            category: "액션, 드라마",
-            textRed: "color: red",
-            like: 0,
-            imgUrl: 'poster1.jpg', // path는 index.html 기준
-          },
-          {
-            title: "아쿠아맨",
-            year: 2023,
-            category: "판타지",
-            like: 0,
-            imgUrl: 'poster2.jpg',
-          },
-        ]
+        movies: movies, // import 한 데이터를 변수에 바인딩
       }
     },
     methods: {
