@@ -1,22 +1,13 @@
 <template>
   <h1>영화 정보</h1>
-<!--   
-    <div>
-      <h3 :style="data[0].textRed">{{ data[0].title }}</h3>
-      <p>개봉: {{ data[0].year }}</p>
-      <p>장르: {{ data[0].category }}</p>
-    </div>
-    <div>
-      <h3 :style="data[1].textRed">{{ data[1].title }}</h3>
-      <p>개봉: {{ data[1].year }}</p>
-      <p>장르: {{ data[1].category }}</p>
-    </div>
- -->
-
     <div v-for="(item, index) in data" :key="index">
       <h3 :style="item.textRed">{{ item.title }}</h3>
       <p>개봉: {{ item.year }}</p>
       <p>장르: {{ item.category }}</p>
+
+      <!-- 노량과 아쿠아맨의 좋아요 모두 ++됨 -->
+      <!-- <button @:click="like++">좋아요</button> <span>{{ like }}</span> -->
+      <button @:click="increseLike">좋아요</button> <span>{{ like }}</span>
     </div>
 
     <hr>
@@ -28,6 +19,7 @@
     name: 'App',
     data() { // 상태변수
       return {
+        like: 0,
         foods: ["김밥", "순대", "만두"],
         data: [
           {
@@ -42,6 +34,11 @@
             category: "판타지",
           },
         ]
+      }
+    },
+    methods: {
+      increseLike() {
+        this.like++
       }
     }
   }
