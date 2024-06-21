@@ -10,14 +10,14 @@
         <p>장르: {{ item.category }}</p>
         <button @:click="increseLike(index)">좋아요</button> <span>{{ item.like }}</span>
         <p>
-          <button @:click="isModal=true">상세보기</button>
+          <button @:click="isModal=true; selectedMovie=index">상세보기</button>
         </p>
       </div>
     </div>
 
     <div class="modal" v-if="isModal">
       <div class="inner">
-        <h3>Detail</h3>
+        <h3>{{ movies[selectedMovie].title}}</h3>
         <p>영화 상세정보</p>
         <button @:click="isModal=false">닫기</button>
       </div>
@@ -35,6 +35,7 @@
         isModal: false,
         like: 0,
         movies: movies, // import 한 데이터를 변수에 바인딩
+        selectedMovie: 0,
       }
     },
     methods: {
