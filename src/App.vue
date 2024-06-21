@@ -25,6 +25,10 @@
 </template>
 
 <script>
+  import { food, city } from './assets/movies'
+  console.log(food);
+  console.log(city);
+
   export default {
     name: 'App',
     data() { // 상태변수
