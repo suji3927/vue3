@@ -16,13 +16,7 @@
       </div>
     </div>
 
-    <div class="modal" v-if="isModal">
-      <div class="inner">
-        <h3>{{ movies[selectedMovie].title}}</h3>
-        <p>영화 상세정보</p>
-        <button @:click="isModal=false">닫기</button>
-      </div>
-    </div>
+    <Modal />
 </template>
 
 <script>
@@ -35,12 +29,13 @@
   // - 컴포넌트를 재귀적으로 구성할 때
   // - Vue 개발자 도구를 사용할 때
   import NavbarC from './components/Navbar.vue'
+  import Modal from './components/Modal.vue'
 
   export default {
     name: 'App',
     data() { // 상태변수
       return {
-        isModal: false,
+        isModal: false, // 부모 App이 가지고 있는 변수 (부모 컴포넌트에서 data 관리하는 게 일반적)
         like: 0,
         movies: movies, // import 한 데이터를 변수에 바인딩
         selectedMovie: 0,
@@ -53,6 +48,7 @@
     },
     components: {
       NavbarC: NavbarC,
+      Modal: Modal,
     }
   }
 </script>
@@ -62,21 +58,4 @@
     margin-top: 1rem;
   }
 
-  .modal {
-    background: rbga(0, 0, 0, 0.7);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-self: center;
-    align-items: center;
-  }
-
-  .modal .inner {
-    background: #f0f1ff;
-    width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-  }
 </style>
