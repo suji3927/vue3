@@ -1,5 +1,7 @@
 <template>
   <NavbarC />
+  <!-- props변수="보낼값" -->
+  <Event text="넷플릭스"/>
   <h1>영화 정보</h1>
     <div v-for="(item, index) in movies" :key="index">
       <figure>
@@ -30,6 +32,7 @@
   // - Vue 개발자 도구를 사용할 때
   import NavbarC from './components/Navbar.vue'
   import Modal from './components/Modal.vue'
+  import Event from './components/Event.vue'
 
   export default {
     name: 'App',
@@ -49,6 +52,7 @@
     components: {
       NavbarC: NavbarC,
       Modal: Modal,
+      Event: Event,
     }
   }
 </script>
