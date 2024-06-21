@@ -4,10 +4,7 @@
       <h3 :style="item.textRed">{{ item.title }}</h3>
       <p>개봉: {{ item.year }}</p>
       <p>장르: {{ item.category }}</p>
-
-      <!-- 노량과 아쿠아맨의 좋아요 모두 ++됨 -->
-      <!-- <button @:click="like++">좋아요</button> <span>{{ like }}</span> -->
-      <button @:click="increseLike">좋아요</button> <span>{{ like }}</span>
+      <button @:click="increseLike(index)">좋아요</button> <span>{{ item.like }}</span>
     </div>
 
     <hr>
@@ -27,18 +24,20 @@
             year: 2023,
             category: "액션, 드라마",
             textRed: "color: red",
+            like: 0
           },
           {
             title: "아쿠아맨",
             year: 2023,
             category: "판타지",
+            like: 0
           },
         ]
       }
     },
     methods: {
-      increseLike() {
-        this.like++
+      increseLike(index) {
+        this.data[index].like++
       }
     }
   }
