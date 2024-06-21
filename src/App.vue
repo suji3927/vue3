@@ -2,29 +2,21 @@
   <NavbarC />
   <!-- props변수="보낼값" -->
   <Event :text="text" />
-  <h1>영화 정보</h1>
-    <div v-for="(item, index) in movies" :key="index">
-      <figure>
-        <img :src="`./assets/${item.imgUrl}`" :alt="item.title">
-      </figure>
-      <div class="info">
-        <h3 :style="item.textRed">{{ item.title }}</h3>
-        <p>개봉: {{ item.year }}</p>
-        <p>장르: {{ item.category }}</p>
-        <button @:click="increseLike(index)">좋아요</button> <span>{{ item.like }}</span>
-        <p>
-          <button @:click="isModal=true; selectedMovie=index">상세보기</button>
-        </p>
-      </div>
-    </div>
 
-    <!-- 부모가 자식이 요청한 event를 전달 받아 값을 직접 바꿔준다. -->
-    <Modal 
-      :isModal="isModal" 
-      :movies="movies" 
-      :selectedMovie="selectedMovie"
-      @closeModal="isModal=false"
-    />
+  <!-- $emit으로 전달받은 값은 $event로 받을 수 있다. -->
+  <Movies 
+    :movies="movies"
+    @openModal="isModal=true; selectedMovie=$event"
+    @increseLike="increseLike($event)"
+  />
+
+  <!-- 부모가 자식이 요청한 event를 전달 받아 값을 직접 바꿔준다. -->
+  <Modal 
+    :isModal="isModal" 
+    :movies="movies" 
+    :selectedMovie="selectedMovie"
+    @closeModal="isModal=false"
+  />
 </template>
 
 <script>
@@ -39,6 +31,7 @@
   import NavbarC from './components/Navbar.vue'
   import Modal from './components/Modal.vue'
   import Event from './components/Event.vue'
+  import Movies from './components/Movies.vue';
 
   export default {
     name: 'App',
@@ -53,13 +46,14 @@
     },
     methods: {
       increseLike(index) {
-        this.data[index].like++
+        this.movies[index].like++
       }
     },
     components: {
       NavbarC: NavbarC,
       Modal: Modal,
       Event: Event,
+      Movies: Movies,
     }
   }
 </script>
