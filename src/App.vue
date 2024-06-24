@@ -5,7 +5,7 @@
     <button @click="showAllMovies">전체보기</button>
   </p>
   <!-- props변수="보낼값" -->
-  <Event :text="text" />
+  <Event :text="text[eventTextNum]" />
 
   <!-- $emit으로 전달받은 값은 $event로 받을 수 있다. -->
   <Movies 
@@ -51,7 +51,9 @@
         // 방지 목적으로 'spread operator' 사용
         movies_temp: [...movies], // 사본
         selectedMovie: 0,
-        text: "넷플릭스 Event"
+        text: ['넷플릭스 Event', '디즈니 100주년', '티빙 방송'],
+        eventTextNum: 0,
+        interval: null, // setInterval 함수 종료시키기 위한 변수
       }
     },
     methods: {
@@ -80,6 +82,18 @@
       Event: Event,
       Movies: Movies,
       SearchBar: SearchBar,
+    },
+    mounted() { // Dom 만들어진 시점 : Vue 인스턴스가 DOM에 바인딩되는 단계
+      this.interval = setInterval(() => { // setInterval() 무한 실행
+        if (this.eventTextNum == this.text.length - 1) {
+          this.eventTextNum = 0;
+        } else {
+          this.eventTextNum += 1;
+        }
+      }, 3000) // 3000ms = 3초
+    },
+    unmounted() { // Vue 인스턴스가 DOM에서 해제되는 단계
+      clearInterval(this.interval) // setInterval 함수 해제
     }
   }
 </script>
