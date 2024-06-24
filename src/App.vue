@@ -1,11 +1,15 @@
 <template>
   <NavbarC />
+  <SearchBar :movies="movies_temp" @searchMovie="searchMovie($event)"/>
+  <p>
+    <button @click="showAllMovies">전체보기</button>
+  </p>
   <!-- props변수="보낼값" -->
   <Event :text="text" />
 
   <!-- $emit으로 전달받은 값은 $event로 받을 수 있다. -->
   <Movies 
-    :movies="movies"
+    :movies="movies_temp"
     @openModal="isModal=true; selectedMovie=$event"
     @increseLike="increseLike($event)"
   />
@@ -17,6 +21,7 @@
     :selectedMovie="selectedMovie"
     @closeModal="isModal=false"
   />
+
 </template>
 
 <script>
@@ -31,7 +36,8 @@
   import NavbarC from './components/Navbar.vue'
   import Modal from './components/Modal.vue'
   import Event from './components/Event.vue'
-  import Movies from './components/Movies.vue';
+  import Movies from './components/Movies.vue'
+  import SearchBar from './components/SearchBar.vue'
 
   export default {
     name: 'App',
@@ -40,6 +46,10 @@
         isModal: false, // 부모 App이 가지고 있는 변수 (부모 컴포넌트에서 data 관리하는 게 일반적)
         like: 0,
         movies: movies, // import 한 데이터를 변수에 바인딩
+        // spread operator : 배열 복사 
+        // -> 배열을 직접 대입 시 복사본에서 값 변경하면 원본 데이터도 같이 변경됨
+        // 방지 목적으로 'spread operator' 사용
+        movies_temp: [...movies], // 사본
         selectedMovie: 0,
         text: "넷플릭스 Event"
       }
@@ -47,13 +57,24 @@
     methods: {
       increseLike(index) {
         this.movies[index].like++
+      },
+      searchMovie(title) {
+        // 영화 제목이 포함된 데이터를 가져온다.
+        this.movies_temp = this.movies.filter(movie => {
+          return movie.title.includes(title)
+        })
+      },
+      showAllMovies() {
+        this.movies_temp = [...this.movies]
       }
+
     },
     components: {
       NavbarC: NavbarC,
       Modal: Modal,
       Event: Event,
       Movies: Movies,
+      SearchBar: SearchBar,
     }
   }
 </script>
