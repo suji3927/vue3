@@ -41,7 +41,7 @@
         like: 0,
         movies: movies, // import 한 데이터를 변수에 바인딩
         selectedMovie: 0,
-        text: "넷플릭스"
+        text: "넷플릭스 Event"
       }
     },
     methods: {
