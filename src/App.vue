@@ -1,4 +1,5 @@
 <template>
+<div>
   <NavbarC />
   <SearchBar :movies="movies_temp" @searchMovie="searchMovie($event)"/>
   <p>
@@ -21,7 +22,7 @@
     :selectedMovie="selectedMovie"
     @closeModal="isModal=false"
   />
-
+</div>
 </template>
 
 <script>
