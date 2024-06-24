@@ -1,5 +1,6 @@
 const movies = [
     {
+      id: 0,
       title: "노량",
       year: 2023,
       category: "액션, 드라마",
@@ -8,6 +9,7 @@ const movies = [
       imgUrl: 'poster1.jpg',
     },
     {
+      id: 1,
       title: "아쿠아맨",
       year: 2023,
       category: "판타지",

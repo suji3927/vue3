@@ -55,8 +55,13 @@
       }
     },
     methods: {
-      increseLike(index) {
-        this.movies[index].like++
+      increseLike(id) {
+        // id가 일치하는 데이터의 좋아요를 증가시킨다.
+        this.movies.find(movie => {
+          if(movie.id == id) {
+            movie.like++
+          }
+        })
       },
       searchMovie(title) {
         // 영화 제목이 포함된 데이터를 가져온다.
